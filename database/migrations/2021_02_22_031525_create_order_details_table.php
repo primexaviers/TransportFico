@@ -29,6 +29,12 @@ class CreateOrderDetailsTable extends Migration
      */
     public function down()
     {
+        if (Schema::hasColumn('orders', 'order_id'))
+        {
+            Schema::table('orders', function (Blueprint $table) {
+                $table->dropForeign(['order_id']);
+            });
+        }
         Schema::dropIfExists('order_details');
     }
 }

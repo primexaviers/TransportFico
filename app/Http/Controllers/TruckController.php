@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Destination;
+use App\Models\Truck;
 use Illuminate\Http\Request;
 
-class DestinationController extends Controller
+class TruckController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class DestinationController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Destination  $destination
+     * @param  \App\Models\Truck  $truck
      * @return \Illuminate\Http\Response
      */
-    public function show(Destination $destination)
+    public function show(Truck $truck)
     {
         //
     }
@@ -52,10 +52,10 @@ class DestinationController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Destination  $destination
+     * @param  \App\Models\Truck  $truck
      * @return \Illuminate\Http\Response
      */
-    public function edit(Destination $destination)
+    public function edit(Truck $truck)
     {
         //
     }
@@ -64,10 +64,10 @@ class DestinationController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Destination  $destination
+     * @param  \App\Models\Truck  $truck
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Destination $destination)
+    public function update(Request $request, Truck $truck)
     {
         //
     }
@@ -75,10 +75,10 @@ class DestinationController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Destination  $destination
+     * @param  \App\Models\Truck  $truck
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Destination $destination)
+    public function destroy(Truck $truck)
     {
         //
     }

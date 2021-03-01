@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateShipmentDetailsTable extends Migration
+class CreateAddressesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,14 @@ class CreateShipmentDetailsTable extends Migration
      */
     public function up()
     {
-        Schema::create('shipment_details', function (Blueprint $table) {
+        Schema::create('addresses', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->integer('priority')->default(0);
-            $table->integer('type');
+            $table->string('lang');
+            $table->string('long');
+            $table->string('desc');
             $table->timestamps();
             $table->softDeletes($column = 'deleted_at', $precision = 0);
-            $table->foreignId('shipment_id')->constrained('shipments');
-            $table->foreignId('destination_id')->constrained('destinations');
         });
     }
 
@@ -32,6 +31,6 @@ class CreateShipmentDetailsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('shipment_details');
+        Schema::dropIfExists('addresses');
     }
 }

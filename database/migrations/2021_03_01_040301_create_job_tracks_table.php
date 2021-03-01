@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePerfomancesTable extends Migration
+class CreateJobTracksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreatePerfomancesTable extends Migration
      */
     public function up()
     {
-        Schema::create('perfomances', function (Blueprint $table) {
+        Schema::create('job_tracks', function (Blueprint $table) {
             $table->id();
-            $table->integer('rating')->default(0);
+            $table->string('filename');
             $table->timestamps();
             $table->softDeletes($column = 'deleted_at', $precision = 0);
-            $table->foreignId('user_id')->constrained('users');
+            $table->foreignId('job_id')->constrained('jobs');
         });
     }
 
@@ -29,6 +29,12 @@ class CreatePerfomancesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('perfomances');
+        if (Schema::hasColumn('job_tracks', 'job_id'))
+        {
+            Schema::table('job_tracks', function (Blueprint $table) {
+                $table->dropForeign(['job_id']);
+            });
+        }
+        Schema::dropIfExists('job_tracks');
     }
 }

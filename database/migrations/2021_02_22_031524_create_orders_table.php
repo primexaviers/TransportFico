@@ -18,6 +18,7 @@ class CreateOrdersTable extends Migration
             $table->string("name");
             $table->timestamps();
             $table->softDeletes($column = 'deleted_at', $precision = 0);
+            $table->foreignId('customer_id')->constrained('customers');
         });
     }
 
@@ -28,6 +29,12 @@ class CreateOrdersTable extends Migration
      */
     public function down()
     {
+        if (Schema::hasColumn('orders', 'customer_id'))
+        {
+            Schema::table('orders', function (Blueprint $table) {
+                $table->dropForeign(['customer_id']);
+            });
+        }
         Schema::dropIfExists('orders');
     }
 }

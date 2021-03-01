@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDriverTracksTable extends Migration
+class CreateTrucksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,12 @@ class CreateDriverTracksTable extends Migration
      */
     public function up()
     {
-        Schema::create('driver_tracks', function (Blueprint $table) {
+        Schema::create('trucks', function (Blueprint $table) {
             $table->id();
-            $table->string('lang');
-            $table->string('long');
+            $table->string('name');
+            $table->string('vehicle_no');
             $table->timestamps();
             $table->softDeletes($column = 'deleted_at', $precision = 0);
-            $table->foreignId('driver_id')->constrained('drivers');
         });
     }
 
@@ -30,6 +29,6 @@ class CreateDriverTracksTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('driver_tracks');
+        Schema::dropIfExists('trucks');
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateShipmentsTable extends Migration
+class CreatePerfomancesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,10 @@ class CreateShipmentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('shipments', function (Blueprint $table) {
+        Schema::create('perfomances', function (Blueprint $table) {
             $table->id();
-            $table->string("name");
+            $table->integer('rating')->default(0);
+            $table->text('comment')->nullable( );
             $table->timestamps();
             $table->softDeletes($column = 'deleted_at', $precision = 0);
             $table->foreignId('job_id')->constrained('jobs');
@@ -29,6 +30,12 @@ class CreateShipmentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('shipments');
+        if (Schema::hasColumn('perfomances', 'job_id'))
+        {
+            Schema::table('perfomances', function (Blueprint $table) {
+                $table->dropForeign(['job_id']);
+            });
+        }
+        Schema::dropIfExists('perfomances');
     }
 }
