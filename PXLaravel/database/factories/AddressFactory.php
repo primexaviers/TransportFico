@@ -25,7 +25,7 @@ class AddressFactory extends Factory
             'name' => $this->faker->text('50'),
             'lang' => $this->faker->latitude(-90, 90),
             'long' => $this->faker->latitude(-90, 90),
-            'desc' => $this->faker->text(200)
+            'desc' => $this->faker->text(150)
         ];
     }
 }
