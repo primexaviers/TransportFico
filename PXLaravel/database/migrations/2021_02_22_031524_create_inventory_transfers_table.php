@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateJobTracksTable extends Migration
+class CreateInventoryTransfersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,13 @@ class CreateJobTracksTable extends Migration
      */
     public function up()
     {
-        Schema::create('job_tracks', function (Blueprint $table) {
+        Schema::create('inventory_transfers', function (Blueprint $table) {
             $table->id();
-            $table->string('filename');
+            $table->string("name");
+            $table->float('total_product_transfer')->nullable();
+            $table->float('total_weight_transfer')->nullable();
             $table->timestamps();
             $table->softDeletes($column = 'deleted_at', $precision = 0);
-            $table->foreignId('job_id')->constrained('jobs');
         });
     }
 
@@ -29,12 +30,6 @@ class CreateJobTracksTable extends Migration
      */
     public function down()
     {
-        if (Schema::hasColumn('job_tracks', 'job_id'))
-        {
-            Schema::table('job_tracks', function (Blueprint $table) {
-                $table->dropForeign(['job_id']);
-            });
-        }
-        Schema::dropIfExists('job_tracks');
+        Schema::dropIfExists('inventory_transfers');
     }
 }

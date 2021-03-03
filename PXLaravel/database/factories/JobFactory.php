@@ -23,10 +23,6 @@ class JobFactory extends Factory
     {
         return [
             'name' => $this->faker->text('50'),
-            'truck_id' => $this->faker->numberBetween(1,50),
-            'driver_id' => $this->faker->numberBetween(1,50),
-            'origin' => $this->faker->numberBetween(1,50),
-            'destination' => $this->faker->numberBetween(1,50),
         ];
     }
 }

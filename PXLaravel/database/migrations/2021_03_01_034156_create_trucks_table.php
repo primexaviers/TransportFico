@@ -17,6 +17,10 @@ class CreateTrucksTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('vehicle_no');
+            $table->float('length')->nullable();
+            $table->float('breadth')->nullable();
+            $table->float('height')->nullable();
+            $table->float('max_weight')->nullable();
             $table->timestamps();
             $table->softDeletes($column = 'deleted_at', $precision = 0);
         });

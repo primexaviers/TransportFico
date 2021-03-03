@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateOrderDetailsTable extends Migration
+class CreateInventoryTransferDetailsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,13 @@ class CreateOrderDetailsTable extends Migration
      */
     public function up()
     {
-        Schema::create('order_details', function (Blueprint $table) {
+        Schema::create('inventory_transfer_details', function (Blueprint $table) {
             $table->id();
             $table->string("name");
             $table->integer("total");
             $table->timestamps();
             $table->softDeletes($column = 'deleted_at', $precision = 0);
-            $table->foreignId('order_id')->constrained('orders');
+            $table->foreignId('inventory_transfer_id')->constrained('inventory_transfers');
             $table->foreignId('product_id')->constrained('products');
         });
     }
@@ -31,18 +31,18 @@ class CreateOrderDetailsTable extends Migration
      */
     public function down()
     {
-        if (Schema::hasColumn('order_details', 'order_id'))
+        if (Schema::hasColumn('inventory_transfer_details', 'inventory_transfers'))
         {
-            Schema::table('order_details', function (Blueprint $table) {
-                $table->dropForeign(['order_id']);
+            Schema::table('inventory_transfer_details', function (Blueprint $table) {
+                $table->dropForeign(['inventory_transfers']);
             });
         }
-        if (Schema::hasColumn('order_details', 'product_id'))
+        if (Schema::hasColumn('inventory_transfer_details', 'product_id'))
         {
-            Schema::table('order_details', function (Blueprint $table) {
+            Schema::table('inventory_transfer_details', function (Blueprint $table) {
                 $table->dropForeign(['product_id']);
             });
         }
-        Schema::dropIfExists('order_details');
+        Schema::dropIfExists('inventory_transfer_details');
     }
 }

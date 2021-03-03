@@ -18,11 +18,6 @@ class CreateJobsTable extends Migration
             $table->string("name");
             $table->timestamps();
             $table->softDeletes($column = 'deleted_at', $precision = 0);
-            $table->foreignId('order_id')->constrained('orders');
-            $table->foreignId('truck_id')->constrained('trucks');
-            $table->foreignId('driver_id')->constrained('drivers');
-            $table->foreignId('origin')->constrained('addresses');
-            $table->foreignId('destination')->constrained('addresses');
         });
     }
 
@@ -33,36 +28,6 @@ class CreateJobsTable extends Migration
      */
     public function down()
     {
-        if (Schema::hasColumn('jobs', 'destination'))
-        {
-            Schema::table('jobs', function (Blueprint $table) {
-                $table->dropForeign(['destination']);
-            });
-        }
-        if (Schema::hasColumn('jobs', 'origin'))
-        {
-            Schema::table('jobs', function (Blueprint $table) {
-                $table->dropForeign(['origin']);
-            });
-        }
-        if (Schema::hasColumn('jobs', 'order_id'))
-        {
-            Schema::table('jobs', function (Blueprint $table) {
-                $table->dropForeign(['order_id']);
-            });
-        }
-        if (Schema::hasColumn('jobs', 'truck_id'))
-        {
-            Schema::table('jobs', function (Blueprint $table) {
-                $table->dropForeign(['truck_id']);
-            });
-        }
-        if (Schema::hasColumn('jobs', 'driver_id'))
-        {
-            Schema::table('jobs', function (Blueprint $table) {
-                $table->dropForeign(['driver_id']);
-            });
-        }
         Schema::dropIfExists('jobs');
     }
 }

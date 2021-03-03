@@ -23,7 +23,11 @@ class TruckFactory extends Factory
     {
         return [
             'name' => $this->faker->name,
-            'vehicle_no' => strtoupper($this->faker->numerify('BP #### ').$this->faker->lexify('??'))
+            'vehicle_no' => strtoupper($this->faker->numerify('BP #### ').$this->faker->lexify('??')),
+            'length' =>  $this->faker->randomElement($array = array(2430,2990,6060,12200)),
+            'breadth' => $this->faker->randomElement($array = array(2200,2440)),
+            'height' => $this->faker->randomElement($array = array(2270,2590,2600)),
+            'max_weight' => $this->faker->randomElement($array = array(28280,26740,26650,28670,25700,27720)),
         ];
     }
 }
