@@ -17,7 +17,7 @@ class CreateJobWarehousesTable extends Migration
             $table->id();
             $table->timestamps();
             $table->softDeletes($column = 'deleted_at', $precision = 0);
-            $table->foreignId('inventory_transfer')->constrained('inventory_transfers');
+            $table->foreignId('job_id')->constrained('jobs');
             $table->foreignId('truck_id')->constrained('trucks');
             $table->foreignId('driver_id')->constrained('drivers');
             $table->foreignId('origin')->constrained('warehouses');
@@ -32,6 +32,12 @@ class CreateJobWarehousesTable extends Migration
      */
     public function down()
     {
+        if (Schema::hasColumn('job_warehouses', 'job_id'))
+        {
+            Schema::table('job_warehouses', function (Blueprint $table) {
+                $table->dropForeign(['job_id']);
+            });
+        }
         if (Schema::hasColumn('job_warehouses', 'destination'))
         {
             Schema::table('job_warehouses', function (Blueprint $table) {

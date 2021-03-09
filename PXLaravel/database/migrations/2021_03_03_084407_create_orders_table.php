@@ -21,6 +21,7 @@ class CreateOrdersTable extends Migration
             $table->timestamps();
             $table->softDeletes($column = 'deleted_at', $precision = 0);
             $table->foreignId('customer_id')->constrained('customers');
+            $table->foreignId('job_address_id')->constrained('job_addresses');
         });
     }
 
@@ -31,6 +32,12 @@ class CreateOrdersTable extends Migration
      */
     public function down()
     {
+        if (Schema::hasColumn('orders', 'job_address_id'))
+        {
+            Schema::table('orders', function (Blueprint $table) {
+                $table->dropForeign(['job_address_id']);
+            });
+        }
         if (Schema::hasColumn('orders', 'customer_id'))
         {
             Schema::table('orders', function (Blueprint $table) {
