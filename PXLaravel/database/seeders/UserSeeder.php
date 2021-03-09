@@ -19,6 +19,8 @@ use App\Models\Job;
 use App\Models\JobWarehouse;
 use App\Models\JobAddress;
 use App\Models\Perfomance;
+use App\Models\InventoryTransfer;
+use App\Models\InventoryTransferDetail;
 
 
 class UserSeeder extends Seeder
@@ -52,5 +54,28 @@ class UserSeeder extends Seeder
             Customer::factory()->count(1)         
         )
         ->create();
+        InventoryTransfer::factory()
+        ->count(3)
+        ->has(
+            InventoryTransferDetail::factory()->count(30)         
+        )
+        ->create();
+
+        $selectInventoryTransfers = InventoryTransfer::all();
+        
+        foreach($selectInventoryTransfers as $selectInventoryTransfer){
+            $inventoryTransferDetails = InventoryTransferDetail::where('inventory_transfer_id',$selectInventoryTransfer->id)->get();
+            $totalWeight = 0;
+            $totalProduct = $inventoryTransferDetails->sum('total');
+            foreach($inventoryTransferDetails as $inventoryTransferDetail){
+                $product = Product::where("id",$inventoryTransferDetail->product_id)->first();
+                $totalWeightProduct = $product->weight * $inventoryTransferDetail->total;
+                $totalWeight += $totalWeightProduct;
+            }
+            $selectInventoryTransfer->total_weight_transfer = $totalWeight;
+            $selectInventoryTransfer->total_product_transfer = $totalProduct;
+            $selectInventoryTransfer->save();
+        }
+
     }
 }

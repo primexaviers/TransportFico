@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class InventoryTransfer extends Model
 {
     use HasFactory;
+    public function inventoryTransferDetail()
+    {
+        return $this->hasMany(InventoryTransferDetail::class);
+    }
 }

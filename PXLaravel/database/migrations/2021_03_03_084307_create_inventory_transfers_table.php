@@ -20,7 +20,8 @@ class CreateInventoryTransfersTable extends Migration
             $table->float('total_weight_transfer')->nullable();
             $table->timestamps();
             $table->softDeletes($column = 'deleted_at', $precision = 0);
-            $table->foreignId('job_warehouse_id')->constrained('job_warehouses');
+            $table->foreignId('origin')->constrained('warehouses');
+            $table->foreignId('destination')->constrained('warehouses');
         });
     }
 
@@ -31,10 +32,16 @@ class CreateInventoryTransfersTable extends Migration
      */
     public function down()
     {
-        if (Schema::hasColumn('inventory_transfers', 'job_warehouse_id'))
+        if (Schema::hasColumn('inventory_transfers', 'destination'))
         {
             Schema::table('inventory_transfers', function (Blueprint $table) {
-                $table->dropForeign(['job_warehouse_id']);
+                $table->dropForeign(['destination']);
+            });
+        }
+        if (Schema::hasColumn('inventory_transfers', 'origin'))
+        {
+            Schema::table('inventory_transfers', function (Blueprint $table) {
+                $table->dropForeign(['origin']);
             });
         }
         Schema::dropIfExists('inventory_transfers');

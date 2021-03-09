@@ -20,8 +20,7 @@ class CreateJobWarehousesTable extends Migration
             $table->foreignId('job_id')->constrained('jobs');
             $table->foreignId('truck_id')->constrained('trucks');
             $table->foreignId('driver_id')->constrained('drivers');
-            $table->foreignId('origin')->constrained('warehouses');
-            $table->foreignId('destination')->constrained('warehouses');
+            $table->foreignId('inventory_transfer_detail_id')->constrained('inventory_transfer_details');
         });
     }
 
@@ -32,22 +31,16 @@ class CreateJobWarehousesTable extends Migration
      */
     public function down()
     {
+        if (Schema::hasColumn('job_warehouses', 'inventory_transfer_details'))
+        {
+            Schema::table('job_warehouses', function (Blueprint $table) {
+                $table->dropForeign(['inventory_transfer_details']);
+            });
+        }
         if (Schema::hasColumn('job_warehouses', 'job_id'))
         {
             Schema::table('job_warehouses', function (Blueprint $table) {
                 $table->dropForeign(['job_id']);
-            });
-        }
-        if (Schema::hasColumn('job_warehouses', 'destination'))
-        {
-            Schema::table('job_warehouses', function (Blueprint $table) {
-                $table->dropForeign(['destination']);
-            });
-        }
-        if (Schema::hasColumn('job_warehouses', 'origin'))
-        {
-            Schema::table('job_warehouses', function (Blueprint $table) {
-                $table->dropForeign(['origin']);
             });
         }
         if (Schema::hasColumn('job_warehouses', 'truck_id'))

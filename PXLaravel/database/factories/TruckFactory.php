@@ -28,6 +28,7 @@ class TruckFactory extends Factory
             'breadth' => $this->faker->randomElement($array = array(2200,2440)),
             'height' => $this->faker->randomElement($array = array(2270,2590,2600)),
             'max_weight' => $this->faker->randomElement($array = array(28280,26740,26650,28670,25700,27720)),
+            'cost_per_kilos' => $this->faker->randomElement($array = array(500,800,900,1000)),
         ];
     }
 }

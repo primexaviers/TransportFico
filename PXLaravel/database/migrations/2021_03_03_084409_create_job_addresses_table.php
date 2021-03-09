@@ -20,8 +20,6 @@ class CreateJobAddressesTable extends Migration
             $table->foreignId('job_id')->constrained('jobs');
             $table->foreignId('truck_id')->constrained('trucks');
             $table->foreignId('driver_id')->constrained('drivers');
-            $table->foreignId('origin')->constrained('addresses');
-            $table->foreignId('destination')->constrained('addresses');
         });
     }
 
@@ -36,18 +34,6 @@ class CreateJobAddressesTable extends Migration
         {
             Schema::table('job_addresses', function (Blueprint $table) {
                 $table->dropForeign(['job_id']);
-            });
-        }
-        if (Schema::hasColumn('job_addresses', 'destination'))
-        {
-            Schema::table('job_addresses', function (Blueprint $table) {
-                $table->dropForeign(['destination']);
-            });
-        }
-        if (Schema::hasColumn('job_addresses', 'origin'))
-        {
-            Schema::table('job_addresses', function (Blueprint $table) {
-                $table->dropForeign(['origin']);
             });
         }
         if (Schema::hasColumn('job_addresses', 'order_id'))

@@ -21,6 +21,7 @@ class CreateTrucksTable extends Migration
             $table->float('breadth')->nullable();
             $table->float('height')->nullable();
             $table->float('max_weight')->nullable();
+            $table->float('cost_per_kilos')->nullable();
             $table->timestamps();
             $table->softDeletes($column = 'deleted_at', $precision = 0);
         });

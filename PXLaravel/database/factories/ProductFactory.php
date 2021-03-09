@@ -22,12 +22,12 @@ class ProductFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->name,
+            'name' => $this->faker->company,
             'uom' => $this->faker->randomElement($array = array('kg','pack','pcs')),
             'length' => $this->faker->randomFloat(null,0,100),
             'breadth' => $this->faker->randomFloat(null,0,100),
             'height' => $this->faker->randomFloat(null,0,100),
-            'weight' => $this->faker->randomFloat(null,0,100),
+            'weight' => $this->faker->randomFloat(null,0,5),
             'cost' => $this->faker->randomFloat(null,10,1000),
             'sell' => $this->faker->randomFloat(null,50,5000)
         ];
