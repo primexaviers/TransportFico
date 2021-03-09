@@ -23,8 +23,9 @@ class InventoryTransferDetailFactory extends Factory
     public function definition()
     {
         $product = Product::all()->pluck("id");
+        $inventoryTransferDetail = InventoryTransferDetail::count();
         return [
-            'name' => $this->faker->name,
+            'name' => "Inventory Transfer Detail #".($inventoryTransferDetail+1),
             'total' =>  $this->faker->numberBetween(1,20),
             'product_id' => $this->faker->randomElement($array = $product)
         ];

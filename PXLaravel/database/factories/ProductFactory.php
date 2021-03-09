@@ -21,8 +21,9 @@ class ProductFactory extends Factory
      */
     public function definition()
     {
+        $product = Product::count();
         return [
-            'name' => $this->faker->company,
+            'name' => "Product #".($product+1),
             'uom' => $this->faker->randomElement($array = array('kg','pack','pcs')),
             'length' => $this->faker->randomFloat(null,0,100),
             'breadth' => $this->faker->randomFloat(null,0,100),
