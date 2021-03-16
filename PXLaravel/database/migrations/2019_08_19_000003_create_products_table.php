@@ -19,6 +19,7 @@ class CreateProductsTable extends Migration
             $table->float('length')->nullable();
             $table->float('breadth')->nullable();
             $table->float('height')->nullable();
+            $table->float('volume')->nullable();
             $table->string('dimension_uom')->nullable();
             $table->float('weight')->nullable();
             $table->string('weight_uom')->nullable();

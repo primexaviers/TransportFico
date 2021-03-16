@@ -47,6 +47,7 @@ class TruckFactory extends Factory
             'truck_capacity_uom' => $trucks[$array][6],
             'cost' => $trucks[$array][7],
             'cost_uom' => $trucks[$array][8],
+            'volume' => $trucks[$array][1]*$trucks[$array][2]*$trucks[$array][3],
         ];
     }
 }

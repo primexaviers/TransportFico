@@ -57,7 +57,7 @@ class UserSeeder extends Seeder
         InventoryTransfer::factory()
         ->count(3)
         ->has(
-            InventoryTransferDetail::factory()->count(30)         
+            InventoryTransferDetail::factory()->count(200)         
         )
         ->create();
 

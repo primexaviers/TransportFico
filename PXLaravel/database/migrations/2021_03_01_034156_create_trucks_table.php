@@ -20,6 +20,7 @@ class CreateTrucksTable extends Migration
             $table->float('length')->nullable();
             $table->float('breadth')->nullable();
             $table->float('height')->nullable();
+            $table->double('volume',10,2)->nullable();
             $table->string('dimension_uom')->nullable();
             $table->float('truck_capacity')->nullable();
             $table->string('truck_capacity_uom')->nullable();
