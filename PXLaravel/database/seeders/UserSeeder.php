@@ -36,10 +36,10 @@ class UserSeeder extends Seeder
         ->count(100)
         ->create();
         Warehouse::factory()
-        ->count(15)
+        ->count(10)
         ->create();
         Address::factory()
-        ->count(50)
+        ->count(20)
         ->create();
         Truck::factory()
         ->count(50)

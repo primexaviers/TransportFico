@@ -19,10 +19,13 @@ class CreateProductsTable extends Migration
             $table->float('length')->nullable();
             $table->float('breadth')->nullable();
             $table->float('height')->nullable();
+            $table->string('dimension_uom')->nullable();
             $table->float('weight')->nullable();
+            $table->string('weight_uom')->nullable();
             $table->float('cost')->nullable();
+            $table->string('cost_uom')->nullable();
             $table->float('sell')->nullable();
-            $table->string('uom')->nullable();
+            $table->string('sell_uom')->nullable();
             $table->timestamps();
             $table->softDeletes($column = 'deleted_at', $precision = 0);
         });

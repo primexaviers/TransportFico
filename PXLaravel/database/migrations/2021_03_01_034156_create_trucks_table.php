@@ -20,8 +20,11 @@ class CreateTrucksTable extends Migration
             $table->float('length')->nullable();
             $table->float('breadth')->nullable();
             $table->float('height')->nullable();
-            $table->float('max_weight')->nullable();
-            $table->float('cost_per_kilos')->nullable();
+            $table->string('dimension_uom')->nullable();
+            $table->float('truck_capacity')->nullable();
+            $table->string('truck_capacity_uom')->nullable();
+            $table->double('cost',10,2)->nullable();
+            $table->string('cost_uom')->nullable();
             $table->timestamps();
             $table->softDeletes($column = 'deleted_at', $precision = 0);
         });
